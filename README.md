@@ -1,5 +1,5 @@
 <h1 align="center">
-  Teste Técnico Attus - Back-end Java 
+  Teste Attus - Java
 </h1>
 
 ## Tecnologias

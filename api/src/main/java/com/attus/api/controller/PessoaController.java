@@ -1,5 +1,7 @@
 package com.attus.api.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,36 +12,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.attus.api.model.Pessoa;
+import com.attus.api.dto.PessoaDTO;
 import com.attus.api.service.PessoaService;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/pessoas")
 public class PessoaController {
 	
 	private final PessoaService pessoaService;
 
-	public PessoaController(PessoaService pessoaService) {
-		this.pessoaService = pessoaService;
-	}
-
 	@PostMapping
-	public ResponseEntity<Pessoa> criarPessoa(@Valid @RequestBody Pessoa pessoa) {
-		Pessoa pessoaCriada = pessoaService.criarPessoa(pessoa);
-		return new ResponseEntity<>(pessoaCriada, HttpStatus.CREATED);
+	public ResponseEntity<PessoaDTO> create(@Valid @RequestBody PessoaDTO data) {
+		PessoaDTO pessoaDTO = pessoaService.create(data);  
+		return ResponseEntity.status(HttpStatus.CREATED).body(pessoaDTO);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Pessoa> editarPessoa(@PathVariable Long id, @Valid @RequestBody Pessoa pessoaAtualizada) {
-		Pessoa pessoaEditada = pessoaService.editarPessoa(id, pessoaAtualizada);
-		return new ResponseEntity<>(pessoaEditada, HttpStatus.OK);
+	public ResponseEntity<PessoaDTO> update(@PathVariable Long id, @Valid @RequestBody PessoaDTO data) {
+		PessoaDTO pessoaDTO = pessoaService.update(id, data);
+		return ResponseEntity.status(HttpStatus.OK).body(pessoaDTO);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Pessoa> consultarPessoa(@PathVariable Long id) {
-		Pessoa pessoa = pessoaService.consultarPessoa(id);
-		return new ResponseEntity<>(pessoa, HttpStatus.OK);
+	public ResponseEntity<PessoaDTO> findById(@PathVariable Long id) {
+		PessoaDTO pessoaDTO = pessoaService.findById(id);
+		return ResponseEntity.status(HttpStatus.OK).body(pessoaDTO);
 	}
+	
+    @GetMapping
+    public ResponseEntity<List<PessoaDTO>> findAll() {
+    	List<PessoaDTO> pessoas = pessoaService.findAll();
+    	return ResponseEntity.status(HttpStatus.OK).body(pessoas);
+    }
 }
