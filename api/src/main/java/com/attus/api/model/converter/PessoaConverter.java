@@ -18,18 +18,18 @@ public class PessoaConverter {
 				.build();
 	}
 	
-    public static List<PessoaDTO> toListDTO(List<Pessoa> pessoa) {
-        return pessoa.stream()
+    public static List<PessoaDTO> toListDTO(List<Pessoa> pessoas) {
+        return pessoas.stream()
                 .map(PessoaConverter::toDTO)
                 .collect(Collectors.toList());
     }
 
-	public static PessoaDTO toDTO(Pessoa entity) {
+	public static PessoaDTO toDTO(Pessoa pessoa) {
 		return new PessoaDTO(
-				entity.getId(), 
-				entity.getNomeCompleto(), 
-				entity.getDataNascimento(),
-				entity.getEnderecos() != null ? EnderecoConverter.toListDTO(entity.getEnderecos()) : Collections.emptyList());
+				pessoa.getId(), 
+				pessoa.getNomeCompleto(), 
+				pessoa.getDataNascimento(),
+				pessoa.getEnderecos() != null ? EnderecoConverter.toListDTO(pessoa.getEnderecos()) : Collections.emptyList());
 	}
 	    
 }

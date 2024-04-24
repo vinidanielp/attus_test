@@ -17,7 +17,7 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class EnderecoImpl implements EnderecoService{
+public class EnderecoServiceImpl implements EnderecoService{
 	
 	private final EnderecoRepository enderecoRepository;
 	
@@ -45,7 +45,7 @@ public class EnderecoImpl implements EnderecoService{
 				.orElseThrow(() -> new ResourceNotFoundException("Endereço não encontrado"));
 
 
-        validateAddressAssociation(endereco, idPessoa);
+		validarEnderecoAssociado(endereco, idPessoa);
         
 		endereco.setLogradouro(data.logradouro());
 		endereco.setCep(data.cep());
@@ -63,7 +63,7 @@ public class EnderecoImpl implements EnderecoService{
 		Endereco endereco = enderecoRepository.findById(idEndereco)
 				.orElseThrow(() -> new ResourceNotFoundException("Endereço não encontrado"));
 
-		validateAddressAssociation(endereco, idPessoa);
+		validarEnderecoAssociado(endereco, idPessoa);
 		
 		enderecoRepository.updateEnderecoPrincipal(idPessoa, idEndereco);
 	}
@@ -84,9 +84,9 @@ public class EnderecoImpl implements EnderecoService{
         return EnderecoConverter.toListDTO(enderecos);
 	}
 	
-	 private void validateAddressAssociation(Endereco endereco, Long idPessoa) {
+	 private void validarEnderecoAssociado(Endereco endereco, Long idPessoa) {
         if (!endereco.getPessoa().getId().equals(idPessoa)) {
-            throw new ResourceNotFoundException("Endereço diferente!");
+            throw new ResourceNotFoundException("Endereço não é da pessoa informada!");
         }
     }
 }

@@ -11,8 +11,8 @@ public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
 	@Modifying
 	@Query("""
 			UPDATE Endereco e 
-			SET e.isPrincipal = CASE WHEN e.id = :idEndereco THEN true ELSE false END 
-			WHERE e.pessoa.id = :idPessoa
+			SET e.isPrincipal = CASE WHEN e.id = ?2 THEN true ELSE false END 
+			WHERE e.pessoa.id = ?1
 			""")
 	void updateEnderecoPrincipal(Long idPessoa, Long idEndereco);
 }

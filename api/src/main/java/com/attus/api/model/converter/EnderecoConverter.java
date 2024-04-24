@@ -32,14 +32,14 @@ public class EnderecoConverter {
                 .build();
     }
 
-    public static List<EnderecoDTO> toListDTO(List<Endereco> endereco) {
-        return endereco.stream()
+    public static List<EnderecoDTO> toListDTO(List<Endereco> enderecos) {
+        return enderecos.stream()
                 .map(EnderecoConverter::toDTO)
                 .collect(Collectors.toList());
     }
 
-    public static List<Endereco> toEntityList(List<EnderecoDTO> enderecoDTOs) {
-        return enderecoDTOs.stream()
+    public static List<Endereco> toEntityList(List<EnderecoDTO> enderecosDTO) {
+        return enderecosDTO.stream()
                 .map(EnderecoConverter::toEntity)
                 .collect(Collectors.toList());
     }

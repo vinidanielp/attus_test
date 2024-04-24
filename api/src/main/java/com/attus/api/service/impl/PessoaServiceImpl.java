@@ -15,7 +15,7 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class PessoaImpl implements PessoaService{
+public class PessoaServiceImpl implements PessoaService{
 	
     private final PessoaRepository pessoaRepository;
 
