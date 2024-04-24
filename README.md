@@ -22,10 +22,10 @@ git clone https://github.com/vinidanielp/attus_test.git
 ```
 - Executar a aplicação Spring Boot
 - Acessar aplicação em `http://localhost:8080`.
-- Link para download da coleção [Coleção](https://drive.usercontent.google.com/uc?id=1GcbmM-jKEGoX8BTbZJ8ZQLEBDmtJ-3H7&export=download), funciona também para import no postman!
+- Link para download da coleção [Coleção]([https://drive.usercontent.google.com/uc?id=1GcbmM-jKEGoX8BTbZJ8ZQLEBDmtJ-3H7&export=download](https://github.com/vinidanielp/attus_test/blob/main/Insomnia-Postman.json)), funciona também para import no postman!
 
 
-## Diagrama de Classes - Formato Mermaid
+## Diagrama de Classes
 
 ```mermaid
 classDiagram
